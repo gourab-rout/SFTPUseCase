@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sftp="http://www.mulesoft.org/schema/mule/sftp" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/sftp http://www.mulesoft.org/schema/mule/sftp/current/mule-sftp.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+    
+    <context:property-placeholder location="sftp.properties"/>
+    <sftp:connector name="SFTP_Input" validateConnections="true" autoDelete="false" doc:name="SFTP" pollingFrequency="10000">
+    <receiver-threading-profile
+			maxThreadsActive="1" maxBufferSize="10" maxThreadsIdle="1" threadTTL="600000"
+			poolExhaustedAction="WAIT" threadWaitTimeout="30000" />
+		<service-overrides messageReceiver="org.mule.transport.sftp.CustomSFTPMessageReceiver" />
+    </sftp:connector>
+    <sftp:connector name="SFTP_Output" validateConnections="true" duplicateHandling="addSeqNo" doc:name="SFTP"/>
+    
+    <flow name="sftp-file-pollFlow">
+        <sftp:inbound-endpoint connector-ref="SFTP_Input" host="${sftp.host}" port="${sftp.port}" path="${sftp.read.path}" user="${sftp.username}" password="${sftp.password}" responseTimeout="10000" doc:name="SFTP"/>
+        <logger message="Received file from SFTP input and payload #[payload]" level="INFO" doc:name="Logger"/>
+        <set-session-variable variableName="SourceFileName" value="#[message.outboundProperties['originalFilename']]" doc:name="Session Variable"/>
+        <logger message=".................................Source File Name is #[sessionVars.SourceFileName].............................................................................................................." level="INFO" doc:name="Logger"/>
+        <file:outbound-endpoint path="/src/test/resources/Output" outputPattern="#[SourceFileName]" responseTimeout="10000" doc:name="File"/>
+       
+    </flow>
+</mule>

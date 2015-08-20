@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu Aug 20 10:22:33 IST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-014f-4973-8a46-000000bc7f18 
+on database directory memory:C:\Users\HP\Desktop\mule_workspace\Projects\sftp-file-poll\muleEmbeddedDB with class loader sun.misc.Launcher$AppClassLoader@a57993 
+Loaded from file:/C:/Users/HP/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_40-b26
+user.dir=C:\Users\HP\Desktop\mule_workspace\Projects\sftp-file-poll
+os.name=Windows 7
+os.arch=x86
+os.version=6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
