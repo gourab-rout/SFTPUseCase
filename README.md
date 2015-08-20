@@ -3,7 +3,7 @@
 Purpose
 =======
 
-Read files from read only Sftp folder.
+Reads file from read only Sftp folder.
 
 Components Used To Develop Project
 ==================================
@@ -16,7 +16,7 @@ Components Used To Develop Project
 Project Setup
 ==============
 
-### Step 1: Set Up Crush SFTP Server
+### Step 1: Set Up Crush SFTP Server (Optional: If SFTP server is not already installed)
 
 1. Download crush sftp server from <a href="http://www.crushftp.com/download.html"> http://www.crushftp.com/download.html.
 2. Download the zip as per the operating system.
@@ -51,7 +51,7 @@ Project Setup
    ![ScreenShot](https://raw.githubusercontent.com/indiramallick1988/Demo2/master/tool/projectimport.PNG)
     
 2. The project is developed and tested with studio run time Mule Server 3.6.0 EE. Please ensure mule studio has required munit plugins.
-3. Open file sftp.properties available under src/main/resources. Change the properties to reflect actual sftp parameters.
+3. Open file sftp.properties available under src/main/resources. Change the properties to reflect sftp parameters as per your system configuration.
     
    ![ScreenShot](https://raw.githubusercontent.com/indiramallick1988/Demo2/master/tool/sftp%20cred.PNG)
 
@@ -71,16 +71,19 @@ Project Setup
 
 ### Step 4: Running Project in Standalone Server
 
-1. Download mule-enterprise-standalone-3.7.1 and extract the zip to local folder.
-2. Open command prompt and navigate to project location.
+1. Download mule enterprise standalone server zip file and extract it.
+2. Open the command prompt and navigate to mule workspace where "sftp-file-polling" project is availablle.
 3. Run the command "mvn clean package".
+
    ![ScreenShot](https://raw.githubusercontent.com/indiramallick1988/Demo2/master/tool/buildscreen.PNG)
-4. When build is successful project archive "sftp-file-poll-1.0.0-SNAPSHOT.zip" is created as shown below
+4. When build is successful the project archive "sftp-file-poll-1.0.0-SNAPSHOT.zip" is created as shown below
 
    ![ScreenShot](https://raw.githubusercontent.com/indiramallick1988/Demo2/master/tool/target.png)
 5. Now copy this archive to appps folder of the standalone server( mule-enterprise-standalone-3.7.1/apps)
 6. Now in the command prompt navigate to the path (mule-enterprise-standalone-3.7.1/bin/). Start mule
+
    ![ScreenShot](https://raw.githubusercontent.com/indiramallick1988/Demo2/master/tool/mule%20server%20start.PNG)
+   
 7. When mule standalone server starts it deploys all the project build available in the apps folder.
 8. When the project is successfully deployed it shows below message 
 
@@ -93,7 +96,7 @@ Project Setup
 
 1. In mule end points are by default mocked. The project uses mock sftp data for testing.
 2. The project uses java based munit framework to test duplicate file processing scenario.
-3. The test java class is available in src/test/java/MunitSFTPPollTest.java
-4. When trying to push same file twice below log snippet is shown 
+3. The test java class is available in src/test/java/MunitSFTPPollTest.java.
+4. When trying to push same file twice below log snippet is shown. 
 
    ![ScreenShot](https://raw.githubusercontent.com/indiramallick1988/Demo2/master/tool/junit.PNG) 
