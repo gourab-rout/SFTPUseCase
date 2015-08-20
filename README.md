@@ -53,7 +53,7 @@ Project setup
 2. The project is developed and tested with studio run time Mule Server 3.6.0 EE. Please ensure mule studio has required munit plugins.
 3. Open file sftp.properties available under src/main/resources. Change the properties to reflect actual sftp parameters.
     
-![ScreenShot]((https://raw.githubusercontent.com/indiramallick1988/Demo2/master/tool/sftp cred.PNG)
+![ScreenShot](https://raw.githubusercontent.com/indiramallick1988/Demo2/master/tool/sftp%20cred.PNG)
 
 ### Step 3: Code Functinality details
 
